@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
 
         <link rel="stylesheet" href="{% static 'blog/css/blog-post.css' %}" media="screen">
+        <script src="https://kit.fontawesome.com/0a156fb772.js" crossorigin="'anonymous"></script>
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -35,11 +36,30 @@
             <div class="row">
                 <div class="col-lg-8">
                     <!-- Post content-->
+                    <p>{{post.content}}</p>
+
+                    {% if post.file_upload %}
+                    <a href="{{post.file_upload.url" class="btn btn-outline-dark" role="button" download><button type="button" class="btn btn-info">Info</button>
+                    Download:
+
+                    {% if post.get_file_ext == 'csv' %}
+                    <i class="fas fa-file-csv"></i>
+                    {% elif post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}
+                    <i class="fas fa-file-exel"></i>
+                    {% elif post.get_file_ext == 'docx' or post.get_file_ext == 'doc' %}
+                    <i class="fas fa-file-word"></i>
+                    {% else %}
+                    <i class="far fa-file"></i>
+                    {% endif %}
+                    {{post.get_file_name}}
+                    </a>
+                    {% endif %}
                     <article>
                         <!-- Post header-->
                         <header class="mb-4">
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1">{{ post.title }}</h1>
+                            <h5 class="text-muted">{{post.hook_text}}</h5>
                             <!-- Post meta content-->
                             <div class="text-muted fst-italic mb-2">{{ post.created_at }}</div>
                             <!-- Post categories-->
