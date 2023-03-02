@@ -1,0 +1,1 @@
+C:\github\do_it_django>venv\Scripts\activate.bat
