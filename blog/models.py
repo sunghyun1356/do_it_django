@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 import os
 class Post(models.Model):
     title = models.CharField(max_length=30)
@@ -15,6 +16,9 @@ class Post(models.Model):
 
     def __str__(self):
         return f'[{self.pk}]{self.title}'
+
+    def get_image_url(self):
+        return '%s%s' % (settings.MEDIA_URL, self.image)
 
     def get_absolute_url(self):
         return f'/blog/{self.pk}/'
