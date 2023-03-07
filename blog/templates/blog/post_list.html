@@ -2,6 +2,8 @@
 
 {% block main_area %}
 
+<h1>Blog {% if category %}<span class="badge badge-secondary">{{ category }}</span>{% endif %}</h1>
+
                 <h1>졸업시켜줘 제발!!!</h1>
         {% if post_list.exists %}
                 <!-- Blog Post -->
