@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.conf import settings
 import os
 class Post(models.Model):
@@ -14,8 +15,11 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
     def __str__(self):
-        return f'[{self.pk}]{self.title}'
+        return f'[{self.pk}]{self.title} :: {self.author}'
 
     def get_image_url(self):
         return '%s%s' % (settings.MEDIA_URL, self.image)
